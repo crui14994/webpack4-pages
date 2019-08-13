@@ -11,12 +11,14 @@ const webpackConfigDev = {
         filename: './js/[name].bundle.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, "../src"),
-        publicPath:'/',
-        host: "127.0.0.1",
+        contentBase: path.resolve(__dirname, '../src'),
+        publicPath: '/',
+        host: "localhost",
         port: "8090",
         overlay: true, // 浏览器页面上显示错误
-        hot: true, // 开启热更新
+        open: true, // 开启浏览器
+        inline: true,//打包后加入一个websocket客户端
+        hot: true,//热加载
     },
     plugins: [
         //热更新

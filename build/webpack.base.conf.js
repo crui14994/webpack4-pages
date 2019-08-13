@@ -34,27 +34,9 @@ let entrys = getEntry('./src/pages/');
 
 module.exports = {
     entry: entrys,
-    output:{
-        path:path.resolve(__dirname,'dist'),
-        filename:'js/[name]-bundle.js',
-    },
 	module: {
-	},
-	devServer: {
-        contentBase: path.resolve(__dirname, "dist"),
-        publicPath:'/',
-        host: "127.0.0.1",
-        port: "8090",
-        overlay: true, // 浏览器页面上显示错误
-        // open: true, // 开启浏览器
-        // stats: "errors-only", //stats: "errors-only"表示只打印错误：
-        hot: true, // 开启热更新
     },
-	plugins: [
-		//热更新
-        new webpack.HotModuleReplacementPlugin(),
-	],
-    mode:"development"
+    plugins:[]
 }
 
 //修改自动化配置页面
