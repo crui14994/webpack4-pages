@@ -2,6 +2,9 @@ const path = require('path');
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 
+// 清除目录等
+const cleanWebpackPlugin = require("clean-webpack-plugin");
+
 const webpackConfigBase = require('./webpack.base.conf');
 
 process.env.NODE_ENV = "test"
@@ -15,7 +18,15 @@ const webpackConfigProd = {
         publicPath: './'
     },
     plugins: [
-        
+        //删除dist目录
+        new cleanWebpackPlugin(['dist'], {
+            root: path.resolve(__dirname, '../'), //根目录
+            // verbose Write logs to console.
+            verbose: true, //开启在控制台输出信息
+            // dry Use boolean "true" to test/emulate delete. (will not remove files).
+            // Default: false - remove files
+            dry: false,
+        }),
     ],
     module: {
         rules: []

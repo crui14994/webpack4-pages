@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const glob = require("glob");
 // html模板
 const htmlWebpackPlugin = require("html-webpack-plugin");
+//静态资源输出
+const copyWebpackPlugin = require("copy-webpack-plugin");
 
 // 获取html-webpack-plugin参数的方法
 let getHtmlConfig = function (name, chunks) {
@@ -11,7 +13,12 @@ let getHtmlConfig = function (name, chunks) {
 		filename: `${name}.html`,
 		inject: true,
 		hash: true, //开启hash  ?[hash]
-		chunks: chunks
+        chunks: chunks,
+        minify: process.env.NODE_ENV === "development" ? false : {
+            removeComments: true, //移除HTML中的注释
+            collapseWhitespace: true, //折叠空白区域 也就是压缩代码
+            removeAttributeQuotes: true, //去除属性引用
+        },
 	};
 };
 
@@ -36,7 +43,14 @@ module.exports = {
     entry: entrys,
 	module: {
     },
-    plugins:[]
+    plugins:[
+        //静态资源输出
+        new copyWebpackPlugin([{
+            from: path.resolve(__dirname, "../src/assets"),
+            to: './assets',
+            ignore: ['.*']
+        }]),
+    ]
 }
 
 //修改自动化配置页面
