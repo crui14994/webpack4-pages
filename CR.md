@@ -85,3 +85,37 @@ cnpm install --save-dev file-loader
  ]
 }
 ```
+
+更进一步处理图片成 base64
+```
+cnpm install --save-dev url-loader
+```
+```
+ // 在rules中配置
+{
+   test: /\.(png|svg|jpg|gif|jpeg|ico|woff|woff2|eot|ttf|otf)$/,
+   use: [
+      {
+            loader: "url-loader",
+            options: {
+               limit: 5 * 1024, //小于这个时将会已base64位图片打包处理
+               // 图片文件输出的文件夹
+               publicPath: "../images",
+               outputPath: "images"
+            }
+      }
+   ]
+}
+```
+---
+#### 字体的处理（同图片）
+由于 css 中可能引用到自定义的字体，处理也是跟图片一致。
+```
+ // 在rules中配置
+{
+   test: /\.(woff|woff2|eot|ttf|otf)$/,
+   use: [
+      'file-loader'
+   ]
+}
+```

@@ -34,7 +34,21 @@ const rules = [
         exclude: /node_modules/
     },
     {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|jpeg|ico|woff|woff2|eot|ttf|otf)$/,
+        use: [
+            {
+                loader: "url-loader",
+                options: {
+                    limit: 5 * 1024, //小于这个时将会已base64位图片打包处理
+                    // 图片文件输出的文件夹
+                    publicPath: "../images",
+                    outputPath: "images"
+                }
+            }
+        ]
+    },
+    {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
             'file-loader'
         ]
