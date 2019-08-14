@@ -1,3 +1,5 @@
+import "./index.scss"
+
 class Test {
     constructor(){
         // 默认返回实例对象 this

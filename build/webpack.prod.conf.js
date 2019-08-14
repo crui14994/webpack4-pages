@@ -4,6 +4,8 @@ const merge = require("webpack-merge");
 
 // 清除目录等
 const cleanWebpackPlugin = require("clean-webpack-plugin");
+//分离css，webpack4推荐的分离css的插件
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const webpackConfigBase = require('./webpack.base.conf');
 
@@ -14,7 +16,7 @@ const webpackConfigProd = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件
-        filename: './js/[name].[hash].js',
+        filename: 'js/[name].[hash].js',
         publicPath: './'
     },
     plugins: [
@@ -26,6 +28,10 @@ const webpackConfigProd = {
             // dry Use boolean "true" to test/emulate delete. (will not remove files).
             // Default: false - remove files
             dry: false,
+        }),
+        //将css分离出去
+        new MiniCssExtractPlugin({
+            filename: "css/[name].[hash].min.css"
         }),
     ],
     module: {
