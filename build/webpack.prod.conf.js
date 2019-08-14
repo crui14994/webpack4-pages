@@ -6,10 +6,12 @@ const merge = require("webpack-merge");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 //分离css，webpack4推荐的分离css的插件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// js文件的压缩
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// 压缩css
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const webpackConfigBase = require('./webpack.base.conf');
-
-process.env.NODE_ENV = "test"
 
 const webpackConfigProd = {
     mode: 'production', // 通过 mode 声明生产环境
@@ -34,6 +36,16 @@ const webpackConfigProd = {
             filename: "css/[name].[hash].min.css"
         }),
     ],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                // sourceMap: true // set to true if you want JS source maps
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
+    },
     module: {
         rules: []
     },

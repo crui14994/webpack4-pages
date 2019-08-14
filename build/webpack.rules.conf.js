@@ -2,7 +2,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const rules = [
-
     {
         test: /\.js$/,
         exclude: /(node_modules)/,

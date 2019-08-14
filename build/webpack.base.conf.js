@@ -5,6 +5,9 @@ const glob = require("glob");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 //静态资源输出
 const copyWebpackPlugin = require("copy-webpack-plugin");
+//消除冗余的css
+const purifyCssWebpack = require("purifycss-webpack");
+
 // 获取ruls
 const rules = require("./webpack.rules.conf.js");
 
@@ -53,6 +56,10 @@ module.exports = {
             to: './assets',
             ignore: ['.*']
         }]),
+        // 消除冗余的css代码
+        new purifyCssWebpack({
+            paths: glob.sync(path.join(__dirname, "../src/pages/*/*.html"))
+        }),
     ]
 }
 
