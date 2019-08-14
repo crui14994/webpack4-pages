@@ -5,6 +5,8 @@ const glob = require("glob");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 //静态资源输出
 const copyWebpackPlugin = require("copy-webpack-plugin");
+// 获取ruls
+const rules = require("./webpack.rules.conf.js");
 
 // 获取html-webpack-plugin参数的方法
 let getHtmlConfig = function (name, chunks) {
@@ -42,20 +44,7 @@ let entrys = getEntry('./src/pages/');
 module.exports = {
     entry: entrys,
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /(node_modules)/,
-            include: /src/,
-            use: [
-                {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env',],
-                        plugins: ['@babel/transform-runtime']
-                    }
-                }
-            ]
-        }]
+        rules: [...rules]
     },
     plugins: [
         //静态资源输出
