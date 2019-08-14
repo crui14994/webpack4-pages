@@ -32,6 +32,12 @@ const rules = [
             [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
         include: /src/, //限制范围，提高打包速度
         exclude: /node_modules/
+    },
+    {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+            'file-loader'
+        ]
     }
 
 ];
