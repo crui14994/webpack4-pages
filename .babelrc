@@ -1,37 +1,23 @@
 {
-
-    "presets": [
-  
-      ["@babel/preset-env", {
-  
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
         "useBuiltIns": "usage",
-  
         "modules": false
-  
-      }]
-  
-    ],
-  
-    "plugins": [
-  
-      [
-  
-        "@babel/plugin-transform-runtime", {
-  
-          "corejs": false,
-  
-          "helpers": false,
-  
-          "regenerator": false,
-  
-          "useESModules": false
-  
-        }
-  
-      ]
-  
-    ],
-  
-    "comments": false
-  
-  }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": false,
+        "helpers": false,
+        "regenerator": false,
+        "useESModules": false
+      }
+    ]
+  ],
+  "comments": false
+}
