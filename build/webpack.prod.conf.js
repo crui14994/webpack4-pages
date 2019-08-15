@@ -24,12 +24,8 @@ const webpackConfigProd = {
     plugins: [
         //删除dist目录
         new cleanWebpackPlugin(['dist'], {
-            root: path.resolve(__dirname, '../'), //根目录
-            // verbose Write logs to console.
-            verbose: true, //开启在控制台输出信息
-            // dry Use boolean "true" to test/emulate delete. (will not remove files).
-            // Default: false - remove files
-            dry: false,
+            root: path.resolve(__dirname, '..'),
+            dry: false // 启用删除文件
         }),
         //将css分离出去
         new MiniCssExtractPlugin({
