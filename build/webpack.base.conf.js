@@ -60,7 +60,26 @@ module.exports = {
         new purifyCssWebpack({
             paths: glob.sync(path.join(__dirname, "../src/pages/*/*.html"))
         }),
-    ]
+    ],
+    optimization: {
+        splitChunks: {  //分割代码块
+            cacheGroups: {  //缓存组 缓存公共代码
+                commons: {  //公共模块 
+                    name: "commons",
+                    chunks: "initial",  //入口处开始提取代码
+                    minSize: 0,      //代码最小多大，进行抽离
+                    minChunks: 2,    //代码复 2 次以上的抽离
+                },
+                vendor: {   // 抽离第三方插件
+                    test: /node_modules/,   // 指定是node_modules下的第三方包
+                    chunks: 'initial',
+                    name: 'vendor',  // 打包后的文件名，任意命名    
+                    // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                    priority: 10
+                }
+            }
+        }
+    },
 }
 
 //修改自动化配置页面
@@ -69,7 +88,7 @@ Object.keys(entrys).forEach(function (element) {
     htmlArray.push({
         _html: element,
         title: '',
-        chunks: [element]
+        chunks: ['vendor','commons', element]
     })
 })
 

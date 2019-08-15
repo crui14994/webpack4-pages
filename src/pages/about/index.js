@@ -1,2 +1,4 @@
 import "./index.scss"
-console.log(1)
+
+import multiply from "../../static/js/main"
+console.log(multiply); // false
