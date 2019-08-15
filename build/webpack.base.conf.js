@@ -20,9 +20,9 @@ let getHtmlConfig = function (name, chunks) {
         hash: true, //开启hash  ?[hash]
         chunks: chunks,
         minify: process.env.NODE_ENV === "development" ? false : {
-            removeComments: true, //移除HTML中的注释
-            collapseWhitespace: true, //折叠空白区域 也就是压缩代码
-            removeAttributeQuotes: true, //去除属性引用
+            // removeComments: true, //移除HTML中的注释
+            // collapseWhitespace: true, //折叠空白区域 也就是压缩代码
+            // removeAttributeQuotes: true, //去除属性引用
         },
     };
 };
@@ -76,7 +76,7 @@ module.exports = {
                     name: 'vendor',  // 打包后的文件名，任意命名    
                     // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
                     priority: 10
-                }
+                },
             }
         }
     },
@@ -88,7 +88,7 @@ Object.keys(entrys).forEach(function (element) {
     htmlArray.push({
         _html: element,
         title: '',
-        chunks: ['vendor','commons', element]
+        chunks: ['vendor', 'commons', element]
     })
 })
 

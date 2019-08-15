@@ -164,7 +164,7 @@ splitChunks: {
 optimization: {
         splitChunks: {  //分割代码块
             cacheGroups: {  
-               //抽离自己编写的脚本的公共代码
+               //抽离自己编写的脚本的公共代码（css，js）
                 commons: {  //公共模块 
                     name: "commons",
                     chunks: "initial",  //入口处开始提取代码
