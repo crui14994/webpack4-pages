@@ -42,7 +42,8 @@ const rules = [
                     limit: 5 * 1024, //小于这个时将会已base64位图片打包处理
                     // 图片文件输出的文件夹
                     publicPath: "../images",
-                    outputPath: "images"
+                    outputPath: "images",
+                    name: '[name].[hash].[ext]'
                 }
             }
         ]
