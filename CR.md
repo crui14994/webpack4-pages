@@ -89,6 +89,7 @@ cnpm install --save-dev file-loader
 更进一步处理图片成 base64
 ```
 cnpm install --save-dev url-loader
+cnpm install image-webpack-loader --save-dev
 ```
 ```
  // 在rules中配置
@@ -103,6 +104,9 @@ cnpm install --save-dev url-loader
                publicPath: "../images",
                outputPath: "images"
             }
+      },
+      {
+            loader: 'image-webpack-loader', // 进行图片优化
       }
    ]
 }
