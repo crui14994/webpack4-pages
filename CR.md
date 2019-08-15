@@ -163,14 +163,16 @@ splitChunks: {
 ```
 optimization: {
         splitChunks: {  //分割代码块
-            cacheGroups: {  //缓存组 缓存公共代码
+            cacheGroups: {  
+               //抽离自己编写的脚本的公共代码
                 commons: {  //公共模块 
                     name: "commons",
                     chunks: "initial",  //入口处开始提取代码
                     minSize: 0,      //代码最小多大，进行抽离
                     minChunks: 2,    //代码复 2 次以上的抽离
                 },
-                vendor: {   // 抽离第三方插件
+                vendor: {   
+                   // 抽离第三方插件
                     test: /node_modules/,   // 指定是node_modules下的第三方包
                     chunks: 'initial',
                     name: 'vendor',  // 打包后的文件名，任意命名    
