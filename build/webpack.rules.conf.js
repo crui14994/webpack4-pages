@@ -3,6 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const rules = [
     {
+        // 得到jquery模块的绝对路径
+        test: require.resolve('jquery'),
+        // 将jquery绑定为window.jQuery
+        loader: 'expose-loader?jQuery!expose-loader?$'
+    },
+    {
         test: /\.js$/,
         exclude: /(node_modules)/,
         include: /src/, //限制范围，提高打包速度

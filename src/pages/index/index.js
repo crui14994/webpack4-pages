@@ -1,6 +1,7 @@
 
 import "./index.scss"
 import multiply from "../../static/js/main"
+import $ from 'expose-loader?$!jquery'
 
 class Test {
     constructor(){
@@ -15,4 +16,4 @@ class Example {
         return new Test();
     }
 }
-console.log(multiply); // false
+console.log($('div')); // false
