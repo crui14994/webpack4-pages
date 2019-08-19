@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require("webpack");
-const glob = require("glob");
+const glob = require("glob"); //glob，这个是一个全局的模块，动态配置多页面会用得着
 // html模板
 const htmlWebpackPlugin = require("html-webpack-plugin");
 //静态资源输出
@@ -20,9 +20,9 @@ let getHtmlConfig = function (name, chunks) {
         hash: true, //开启hash  ?[hash]
         chunks: chunks,
         minify: process.env.NODE_ENV === "development" ? false : {
-            // removeComments: true, //移除HTML中的注释
-            // collapseWhitespace: true, //折叠空白区域 也就是压缩代码
-            // removeAttributeQuotes: true, //去除属性引用
+            removeComments: true, //移除HTML中的注释
+            collapseWhitespace: true, //折叠空白区域 也就是压缩代码
+            removeAttributeQuotes: true, //去除属性引用
         },
     };
 };
@@ -38,6 +38,7 @@ function getEntry(PAGES_DIR) {
         var n = name.slice(start, end);
         n = n.split('/')[1];
         eArr.push(name);
+        eArr.push('babel-polyfill');//引入这个，是为了用async await，一些IE不支持的属性能够受支持，兼容IE浏览器用的
         entry[n] = eArr;
     })
     return entry;
