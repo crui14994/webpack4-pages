@@ -5,6 +5,7 @@ const webpackConfigBase = require('./webpack.base.conf');
 
 const webpackConfigDev = {
     mode: 'development', // 通过 mode 声明开发环境
+    devtool: "source-map",  // 开启调试模式
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件
