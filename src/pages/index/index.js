@@ -16,4 +16,4 @@ class Example {
         return new Test();
     }
 }
-console.log($('div')); // false
+console.log($('#header').html()); // false
