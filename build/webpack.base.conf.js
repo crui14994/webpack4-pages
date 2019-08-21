@@ -59,7 +59,7 @@ module.exports = {
         }]),
         // 消除冗余的css代码
         new purifyCssWebpack({
-            paths: glob.sync(path.join(__dirname, "../src/pages/*/*.html"))
+            paths: glob.sync(path.join(__dirname, "../src/**/*.html"))
         }),
     ],
     optimization: {
