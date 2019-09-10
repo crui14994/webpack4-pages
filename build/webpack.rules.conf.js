@@ -22,12 +22,15 @@ const rules = [
             }
         ]
     },
-    // {
-    //     test: /\.(html)$/,
-    //     use: {
-    //         loader: 'html-loader'
-    //     }
-    // },
+    {
+        test: /\.(html)$/,
+        use: {
+            loader: 'html-loader',
+            options:{
+                attrs: ['img:src', 'img:data-src']
+            }
+        }
+    },
     {
         test: /\.(css|scss|sass)$/,
         use: process.env.NODE_ENV === "development" ? ["style-loader", "css-loader", "sass-loader", "postcss-loader"] :

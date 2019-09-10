@@ -3,10 +3,6 @@ const webpack = require("webpack");
 const glob = require("glob"); //glob，这个是一个全局的模块，动态配置多页面会用得着
 // html模板
 const htmlWebpackPlugin = require("html-webpack-plugin");
-//静态资源输出
-const copyWebpackPlugin = require("copy-webpack-plugin");
-//消除冗余的css
-const purifyCssWebpack = require("purifycss-webpack");
 
 // 获取ruls
 const rules = require("./webpack.rules.conf.js");
@@ -14,7 +10,7 @@ const rules = require("./webpack.rules.conf.js");
 // 获取html-webpack-plugin参数的方法
 let getHtmlConfig = function (name, chunks) {
     return {
-        template: `./src/pages/${name}/index.html`,
+        template: 'html-withimg-loader!'+path.resolve(__dirname,  `../src/pages/${name}/index.html`),
         filename: `${name}.html`,
         inject: true,
         hash: true, //开启hash  ?[hash]
@@ -50,17 +46,13 @@ module.exports = {
     module: {
         rules: [...rules]
     },
+    resolve: {
+        alias: {
+            "@":path.resolve(__dirname, "../src"),
+        }
+    },
     plugins: [
-        //静态资源输出
-        new copyWebpackPlugin([{
-            from: path.resolve(__dirname, "../src/assets"),
-            to: './assets',
-            ignore: ['.*']
-        }]),
-        // 消除冗余的css代码
-        new purifyCssWebpack({
-            paths: glob.sync(path.join(__dirname, "../src/**/*.html"))
-        }),
+        
     ],
     optimization: {
         splitChunks: {  //分割代码块

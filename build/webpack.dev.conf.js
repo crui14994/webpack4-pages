@@ -9,10 +9,13 @@ const webpackConfigDev = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件
-        filename: './js/[name].bundle.js'
+        filename: './js/[name].bundle.js',
+        publicPath: '/',
     },
     devServer: {
-        contentBase: path.resolve(__dirname, '../src'),
+        // contentBase: path.resolve(__dirname, '../src'),
+        contentBase: false, // since we use CopyWebpackPlugin.
+        compress: true,
         publicPath: '/',
         host: "localhost",
         port: "8090",

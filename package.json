@@ -44,9 +44,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.4.1"
+    "babel-polyfill": "^6.26.0"
   },
   "browserslist": [
     "ie >= 8",
