@@ -26,7 +26,7 @@ const rules = [
         test: /\.(html)$/,
         use: {
             loader: 'html-loader',
-            options:{
+            options: {
                 attrs: ['img:src', 'img:data-src']
             }
         }
@@ -45,10 +45,7 @@ const rules = [
                 loader: "url-loader",
                 options: {
                     limit: 10000, //小于这个时将会已base64位图片打包处理
-                    // 图片文件输出的文件夹
-                    publicPath: "../images",
-                    outputPath: "images",
-                    name: '[name].[hash].[ext]'
+                    name: 'images/[name].[hash].[ext]'
                 }
             },
             {
@@ -57,11 +54,27 @@ const rules = [
         ]
     },
     {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+            limit: 10000,
+            name: 'fonts/[name].[hash].[ext]',
+        }
+    },
+    {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
             'file-loader'
         ]
-    }
+    },
+    {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'media/[name].[hash:7].[ext]'
+        }
+      },
 
 ];
 module.exports = rules;
