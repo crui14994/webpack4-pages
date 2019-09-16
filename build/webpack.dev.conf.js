@@ -3,19 +3,19 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 const webpackConfigBase = require('./webpack.base.conf');
 
+
 const webpackConfigDev = {
     mode: 'development', // 通过 mode 声明开发环境
     devtool: "source-map",  // 开启调试模式
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件
-        filename: './js/[name].bundle.js',
+        filename: '[name].bundle.js',
         publicPath: '/',
     },
     devServer: {
-        // contentBase: path.resolve(__dirname, '../src'),
-        contentBase: false, // since we use CopyWebpackPlugin.
-        compress: true,
+        contentBase: path.resolve(__dirname, '../dist'),
+        // contentBase: false, 
         publicPath: '/',
         host: "localhost",
         port: "8090",
@@ -27,6 +27,7 @@ const webpackConfigDev = {
     plugins: [
         //热更新
         new webpack.HotModuleReplacementPlugin(),
+        
     ],
 
 }

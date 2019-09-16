@@ -11,8 +11,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // 压缩css
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//静态资源输出
-const copyWebpackPlugin = require("copy-webpack-plugin");
 //消除冗余的css
 const purifyCssWebpack = require("purifycss-webpack");
 
@@ -33,12 +31,6 @@ const webpackConfigProd = {
             root: path.resolve(__dirname, '..'),
             dry: false // 启用删除文件
         }),
-        //静态资源输出
-        new copyWebpackPlugin([{
-            from: path.resolve(__dirname, "../static"),
-            to: 'static',
-            ignore: ['.*']
-        }]),
         //将css分离出去
         new MiniCssExtractPlugin({
             filename: "css/[name].[hash].min.css"

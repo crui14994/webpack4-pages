@@ -23,20 +23,26 @@ const rules = [
         ]
     },
     {
-        test: /\.(html)$/,
-        use: {
-            loader: 'html-loader',
-            options: {
-                attrs: ['img:src', 'img:data-src']
-            }
-        }
-    },
-    {
         test: /\.(css|scss|sass)$/,
         use: process.env.NODE_ENV === "development" ? ["style-loader", "css-loader", "sass-loader", "postcss-loader"] :
             [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
         include: /src/, //限制范围，提高打包速度
         exclude: /node_modules/
+    },
+    {
+        test: /\.(htm|html)$/i,
+        use: [
+            { 
+                loader: 'html-withimg-loader?exclude=/static/',
+             },
+            {
+                loader: 'html-loader',
+                options: {
+                    attrs: ['img:src', 'img:data-src']
+                }
+            },
+            
+        ]
     },
     {
         test: /\.(png|svg|jpg|gif|jpeg|ico)$/,
@@ -71,10 +77,10 @@ const rules = [
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
-          name: 'media/[name].[hash:7].[ext]'
+            limit: 10000,
+            name: 'media/[name].[hash:7].[ext]'
         }
-      },
+    }
 
 ];
 module.exports = rules;
