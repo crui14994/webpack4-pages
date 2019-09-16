@@ -15,14 +15,14 @@ const webpackConfigDev = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, '../dist'),
-        // contentBase: false, 
         publicPath: '/',
         host: "localhost",
         port: "8090",
         overlay: true, // 浏览器页面上显示错误
-        open: true, // 开启浏览器
-        inline: true,//打包后加入一个websocket客户端
-        hot: true,//热加载
+        // open: true, // 开启浏览器
+        inline: true,//实时刷新
+        // hot: true,//热加载
+        // hotOnly:true
     },
     plugins: [
         //热更新

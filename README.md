@@ -1,5 +1,23 @@
 # 2019.9.16
->## 修复html中引入copy的静态资源目录static中的图片路径报错的问题
+
+## **html修改后无法自动刷新的问题**
+试着将hot注释了就可以了(应该有其它更好的办法)
+```
+ devServer: {
+    contentBase: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+    host: "localhost",
+    port: "8090",
+    overlay: true, // 浏览器页面上显示错误
+    // open: true, // 开启浏览器
+    inline: true,//实时刷新
+    // hot: true,//热加载
+    // hotOnly:true
+},
+```
+
+
+## **修复html中引入copy的静态资源目录static中的图片路径报错的问题**
 参考[html-withimg-loader](https://www.npmjs.com/package/html-withimg-loader)中的查询参数
 
 query.exclude 匹配该参数的图片路径不进行处理。例如：
@@ -28,7 +46,7 @@ require('html-withimg-loader?min=false!xxx.html');
 ---
 # 2019.9.10
 
->## 区分assets和static
+## **区分assets和static**
 
 1、static目录下的文件会被直接复制到最终的打包目录下面（默认是 dist/static ），且必须使用绝对路径来引用这些文件。static中建议放一些外部第三方，自己的文件放在assets，别人的放在static中
 
@@ -39,7 +57,7 @@ require('html-withimg-loader?min=false!xxx.html');
    因为webpack使用的是 ` commenJS ` 规范，必须使用require才可以
 
 ---
->## 修复使用图片懒加载后无法打包data-src中的图片;我的图片懒加载使用的是lazysizes.js
+## **修复使用图片懒加载后无法打包data-src中的图片;我的图片懒加载使用的是lazysizes.js**
 ```
 //安装html-loader
 cnpm i -D html-loader
@@ -56,7 +74,7 @@ cnpm i -D html-loader
 },
 ```
 
-> ## 增加路径别名配置
+## **增加路径别名配置**
 ```
 resolve: {
     alias: {
@@ -67,12 +85,12 @@ resolve: {
 ---
 # 2019.8.21
 
->## 修复打包文件过大
+## **修复打包文件过大**
 ```
 //修改devtool为 'cheap-source-map'
 devtool: 'cheap-source-map',
 ```
->## 修复消除冗余的css代码时样式丢失的问题
+## **修复消除冗余的css代码时样式丢失的问题**
 ```
 //更改purifyCssWebpack配置的路径
 // 消除冗余的css代码
@@ -82,7 +100,7 @@ new purifyCssWebpack({
 ```
 ---
 # 2019.8.21
->## 修复html-loader引用公共部分失败的bug
+## **修复html-loader引用公共部分失败的bug**
   使用 html-withimg-loader 替代 html-loader来引用公共html代码
 ```
 //修改html-webpack-plugin的配置
