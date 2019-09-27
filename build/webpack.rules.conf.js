@@ -26,16 +26,16 @@ const rules = [
     {
         test: /\.(htm|html)$/i,
         use: [
-            { 
+            {
                 loader: 'html-withimg-loader?exclude=/static/',
-             },
+            },
             {
                 loader: 'html-loader',
                 options: {
                     attrs: ['img:src', 'img:data-src']
                 }
             },
-            
+
         ]
     },
     {
@@ -45,7 +45,9 @@ const rules = [
                 loader: "url-loader",
                 options: {
                     limit: 10000, //小于这个时将会已base64位图片打包处理
-                    name: 'images/[name].[hash].[ext]'
+                    name: '[name].[hash].[ext]',
+                    publicPath: "../images",
+                    outputPath: "images"
                 }
             },
             {
