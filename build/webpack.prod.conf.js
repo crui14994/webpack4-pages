@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const glob = require("glob"); 
+const glob = require("glob");
 
 // 清除目录等
 const cleanWebpackPlugin = require("clean-webpack-plugin");
@@ -18,7 +18,7 @@ const webpackConfigBase = require('./webpack.base.conf');
 
 const webpackConfigProd = {
     mode: 'production', // 通过 mode 声明生产环境
-    devtool: 'cheap-source-map',
+    devtool: '#source-map',
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件

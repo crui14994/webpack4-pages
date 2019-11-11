@@ -1,12 +1,13 @@
 const path = require('path');
 const webpack = require("webpack");
 const merge = require("webpack-merge");
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin'); // 友好的错误提示插件
 const webpackConfigBase = require('./webpack.base.conf');
 
 
 const webpackConfigDev = {
     mode: 'development', // 通过 mode 声明开发环境
-    devtool: "source-map",  // 开启调试模式
+    devtool: "cheap-module-eval-source-map",
     output: {
         path: path.resolve(__dirname, '../dist'),
         // 打包多出口文件
@@ -14,6 +15,13 @@ const webpackConfigDev = {
         publicPath: '/',
     },
     devServer: {
+        clientLogLevel: 'warning',
+        overlay: { warnings: false, errors: true },
+        quiet: true,
+        watchOptions: {
+            poll: false,
+        },
+        compress: true,
         contentBase: path.resolve(__dirname, '../dist'),
         publicPath: '/',
         host: "localhost",
@@ -27,7 +35,9 @@ const webpackConfigDev = {
     plugins: [
         //热更新
         new webpack.HotModuleReplacementPlugin(),
-        
+        // 友好的错误提示插件
+        new FriendlyErrorsPlugin(),
+
     ],
 
 }
