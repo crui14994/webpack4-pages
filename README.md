@@ -6,6 +6,10 @@ dev --- devtool: "cheap-module-eval-source-map"
 
 prod --- devtool: '#source-map',
 
+## **增加进度条信息**
+
+在package.json的dev中添加 --progress
+
 ## **优化webpack配置**
 
 1. devServer配置更新
