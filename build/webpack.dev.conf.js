@@ -16,7 +16,6 @@ const webpackConfigDev = {
     },
     devServer: {
         clientLogLevel: 'warning',
-        overlay: { warnings: false, errors: true },
         quiet: true,
         watchOptions: {
             poll: false,
