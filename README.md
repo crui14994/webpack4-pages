@@ -19,7 +19,6 @@ prod --- devtool: '#source-map',
     devServer: {
         /*新增*/
         clientLogLevel: 'warning',
-        overlay: { warnings: false, errors: true },
         //启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台。这也意味着来自 webpack 的错误或警告在控制台不可见。
         quiet: true, 
         watchOptions: {
