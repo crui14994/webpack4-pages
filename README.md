@@ -1,3 +1,63 @@
+# 2019.11.11
+
+## **参考vue-cli脚手架配置修改devtool**
+
+dev --- devtool: "cheap-module-eval-source-map"
+
+prod --- devtool: '#source-map',
+
+## **优化webpack配置**
+
+1. devServer配置更新
+
+    ```js
+
+    devServer: {
+        /*新增*/
+        clientLogLevel: 'warning',
+        overlay: { warnings: false, errors: true },
+        //启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台。这也意味着来自 webpack 的错误或警告在控制台不可见。
+        quiet: true, 
+        watchOptions: {
+            poll: false,
+        },
+        compress: true,
+        /*新增结束*/
+        contentBase: path.resolve(__dirname, '../dist'),
+        publicPath: '/',
+        host: "localhost",
+        port: "8090",
+        overlay: true, // 浏览器页面上显示错误
+        // open: true, // 开启浏览器
+        inline: true,//实时刷新
+        // hot: true,//热加载
+        // hotOnly:true
+    },
+
+    ```
+
+2. 安装Webpack友好的错误提示插件friendly-errors-webpack-plugin
+
+    ```base
+    cnpm install friendly-errors-webpack-plugin --save-dev
+    ```
+
+    基本用法
+
+    ```js
+    const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
+    var webpackConfig = {
+    // ...
+    plugins: [
+        new FriendlyErrorsWebpackPlugin(),
+    ],
+    // ...
+    }
+    ```
+
+
+
 # 2019.9.16
 
 ## **html修改后无法自动刷新的问题**
